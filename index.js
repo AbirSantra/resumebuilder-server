@@ -7,6 +7,7 @@ import dontenv from "dotenv";
 import corsOptions from "./config/corsOptions.js";
 import connectDB from "./config/dbConnection.js";
 import mongoose from "mongoose";
+import UserRoutes from "./routes/userRoutes.js";
 
 //! INITIALIZE SERVER APP //
 const app = express();
@@ -24,7 +25,9 @@ app.use(express.text());
 app.use(cookieParser());
 
 //! ROUTES //
-// No matching routes
+app.use("/user", UserRoutes); //-> All routes related to users
+
+//-> When no matching routes exist
 app.all("*", (req, res) => {
 	res.status(404);
 	res.send("404 Error. No matching routes found!");

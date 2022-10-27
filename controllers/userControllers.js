@@ -65,7 +65,94 @@ export const registerUser = async (req, res) => {
 };
 
 // UPDATE A USER
-export const updateUser = async (req, res) => {};
+export const updateUser = async (req, res) => {
+	const userId = req.params.id;
+
+	const { currentUserId, ...userDetails } = req.body;
+
+	if (userId !== currentUserId) {
+		return res
+			.status(403)
+			.json({ message: "Forbidden! You are unauthorized." });
+	}
+
+	try {
+		const targetUser = await userModel.findById(userId).lean();
+
+		if (!targetUser) {
+			return res.status(404).json({ message: "User not found!" });
+		}
+
+		if (req.body.username) {
+			const exisitingUsername = await userModel
+				.findOne({ username: req.body.username })
+				.lean();
+
+			if (exisitingUsername) {
+				if (exisitingUsername?._id?.toString() !== currentUserId) {
+					return res.status(409).json({ message: "Username already taken!" });
+				}
+			}
+		}
+
+		if (req.body.email) {
+			const existingEmail = await userModel
+				.findOne({ email: req.body.email })
+				.lean();
+
+			if (existingEmail?._id?.toString() !== currentUserId) {
+				return res
+					.status(409)
+					.json({ message: "Email is already registered!" });
+			}
+		}
+
+		if (req.body.password) {
+			const hashedPassword = await bcrypt.hash(req.body.password, 10);
+			req.body.password = hashedPassword;
+		}
+
+		const updatedUser = await userModel.findByIdAndUpdate(
+			userId,
+			{ ...userDetails, password: req.body.password },
+			{
+				new: true,
+			}
+		);
+
+		res.status(200).json(updatedUser);
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+};
 
 // DELETE A USER
-export const deleteUser = async (req, res) => {};
+export const deleteUser = async (req, res) => {
+	const userId = req.params.id;
+
+	const { currentUserId } = req.body;
+
+	if (userId !== currentUserId) {
+		return res
+			.status(403)
+			.json({ message: "Forbidden! You are unauthorized." });
+	}
+
+	try {
+		const targetUser = await userModel.findById(userId);
+
+		if (!targetUser) {
+			return res.status(404).json({ message: "User not found!" });
+		}
+
+		const targetUsername = targetUser.username;
+
+		await userModel.findByIdAndDelete(userId);
+
+		res
+			.status(200)
+			.json({ message: `User ${targetUsername} successfully deleted!` });
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+};

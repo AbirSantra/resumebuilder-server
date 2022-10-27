@@ -1,0 +1,100 @@
+{
+  "user": "6358c838c1a31baf7a103b4f",
+  "name": "Test Resume",
+  "position": "Web Developer",
+  "share": true,
+  "data": {
+    "header": {
+      "firstname": "Abir",
+      "middlename": "Blackflash",
+      "lastname": "Santra",
+      "profession": "Web Developer",
+      "city": "Howrah",
+      "country": "India",
+      "pincode": 711106,
+      "phone": 9681908909,
+      "email": "santraabir8@gmail.com",
+      "linkedin": "testurl",
+      "website": "testurl"
+    },
+    "experience": [
+      {
+        "employer": "test employer",
+        "position": "test position",
+        "location": "test location",
+        "startdate": {
+          "month": "JAN",
+          "year": 2001
+        },
+        "enddate": {
+          "month": "DEC",
+          "year": 2002
+        }
+      }
+    ],
+    "education": [
+      {
+        "institute": "test institute",
+        "degree": "test degree",
+        "field": "test field",
+        "startdate": {
+          "month": "JAN",
+          "year": 2001
+        },
+        "enddate": {
+          "month": "DEC",
+          "year": 2002
+        }
+      }
+    ],
+    "skills": [
+      "test skill 1",
+      "test skill 2",
+      "test skill 3"
+    ],
+    "projects": [
+      {
+        "name": "Test project",
+        "tools": [
+          "test tool 1",
+          "test tool 2"
+        ],
+        "url": "test url",
+        "description": "test description",
+        "startdate": {
+          "month": "JAN",
+          "year": 2001
+        },
+        "enddate": {
+          "month": "DEC",
+          "year": 2002
+        }
+      }
+    ],
+    "roles": [
+      {
+        "rolename": "test role",
+        "organization": "test organization",
+        "description": "test description"
+      }
+    ],
+    "certifications": [
+      {
+        "certificationname": "test certification",
+        "organization": "test organization",
+        "date": "test date",
+        "url": "test url"
+      }
+    ],
+    "awards": [
+      "test award 1",
+      "test award 2"
+    ],
+    "extra": [
+      {
+        "title": "test title",
+        "description": "test description"
+      }
+    ]
+  }
+}

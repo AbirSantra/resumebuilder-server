@@ -8,6 +8,7 @@ import corsOptions from "./config/corsOptions.js";
 import connectDB from "./config/dbConnection.js";
 import mongoose from "mongoose";
 import UserRoutes from "./routes/userRoutes.js";
+import ResumeRoutes from "./routes/resumeRoutes.js";
 
 //! INITIALIZE SERVER APP //
 const app = express();
@@ -26,6 +27,8 @@ app.use(cookieParser());
 
 //! ROUTES //
 app.use("/user", UserRoutes); //-> All routes related to users
+
+app.use("/resume", ResumeRoutes); //-> All routes related to resumes
 
 //-> When no matching routes exist
 app.all("*", (req, res) => {

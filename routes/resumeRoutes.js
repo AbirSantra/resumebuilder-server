@@ -9,8 +9,11 @@ import {
 	updateResume,
 	deleteResume,
 } from "../controllers/resumeControllers.js";
+import { verifyJwt } from "../middleware/verifyJwt.js";
 
 const router = express.Router();
+
+router.use(verifyJwt);
 
 // Get a resume
 router.get("/:id", getResume);

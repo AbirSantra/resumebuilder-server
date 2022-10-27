@@ -9,8 +9,11 @@ import {
 	updateUser,
 	deleteUser,
 } from "../controllers/userControllers.js";
+import { verifyJwt } from "../middleware/verifyJwt.js";
 
 const router = express.Router();
+
+router.use(verifyJwt);
 
 // Get a User
 router.get("/:id", getUser);

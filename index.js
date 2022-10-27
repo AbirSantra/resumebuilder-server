@@ -9,6 +9,7 @@ import connectDB from "./config/dbConnection.js";
 import mongoose from "mongoose";
 import UserRoutes from "./routes/userRoutes.js";
 import ResumeRoutes from "./routes/resumeRoutes.js";
+import AuthRoutes from "./routes/authRoutes.js";
 
 //! INITIALIZE SERVER APP //
 const app = express();
@@ -26,6 +27,8 @@ app.use(express.text());
 app.use(cookieParser());
 
 //! ROUTES //
+app.use("/auth", AuthRoutes); //-> All routes related to authentication
+
 app.use("/user", UserRoutes); //-> All routes related to users
 
 app.use("/resume", ResumeRoutes); //-> All routes related to resumes

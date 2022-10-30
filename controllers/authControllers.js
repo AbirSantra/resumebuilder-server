@@ -35,7 +35,7 @@ export const login = async (req, res) => {
 				id: user._id,
 			},
 			process.env.ACCESS_SECRET,
-			{ expiresIn: "30s" }
+			{ expiresIn: "15m" }
 		);
 
 		const refreshToken = jwt.sign(
@@ -43,14 +43,14 @@ export const login = async (req, res) => {
 				id: user._id,
 			},
 			process.env.REFRESH_SECRET,
-			{ expiresIn: "1m" }
+			{ expiresIn: "1d" }
 		);
 
 		res.cookie("jwt", refreshToken, {
 			httpOnly: true,
-			// secure: true,
+			secure: true,
 			sameSite: "None",
-			maxAge: 60 * 1000,
+			maxAge: 24 * 60 * 60 * 1000,
 		});
 
 		res.status(200).json({
@@ -67,7 +67,7 @@ export const refresh = (req, res) => {
 	const cookies = req.cookies;
 
 	if (!cookies?.jwt) {
-		return res.status(401).json({ message: "Unauthorized!" });
+		return res.status(401).json({ message: "JWT Cookie not available" });
 	}
 
 	const refreshToken = cookies.jwt;
@@ -89,7 +89,7 @@ export const refresh = (req, res) => {
 				id: user._id,
 			},
 			process.env.ACCESS_SECRET,
-			{ expiresIn: "30s" }
+			{ expiresIn: "15m" }
 		);
 
 		res.status(200).json({ user, accessToken });
@@ -104,7 +104,7 @@ export const logout = async (req, res) => {
 		return res.status(200).json({ message: "No cookies to clear" });
 	}
 
-	res.clearCookie("jwt", { httpOnly: true, sameSite: "None" });
+	res.clearCookie("jwt", { httpOnly: true, secure: true, sameSite: "None" });
 
 	res.status(200).json({ message: "Cookies found and cleared!" });
 };

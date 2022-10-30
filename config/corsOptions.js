@@ -3,9 +3,9 @@ import allowedOrigins from "./allowedOrigins.js";
 const corsOptions = {
 	origin: (origin, callback) => {
 		if (allowedOrigins.indexOf(origin) !== -1) {
-			callback(null, true);
+			return callback(null, true);
 		} else {
-			callback(new Error("Not allowed by CORS"));
+			return callback(new Error("Not allowed by CORS"));
 		}
 	},
 	credentials: true,

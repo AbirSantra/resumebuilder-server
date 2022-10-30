@@ -20,8 +20,8 @@ connectDB();
 const PORT = process.env.PORT || 5000;
 
 //! MIDDLEWARES //
-app.use(cors());
-app.use(express.json(corsOptions));
+app.use(cors(corsOptions));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.text());
 app.use(cookieParser());

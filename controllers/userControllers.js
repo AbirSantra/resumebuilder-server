@@ -24,9 +24,9 @@ export const getUser = async (req, res) => {
 
 // CREATE/REGISTER A USER
 export const registerUser = async (req, res) => {
-	const { username, email, password, firstname, lastname } = req.body;
+	const { username, email, password } = req.body;
 
-	if (!username || !email || !password || !firstname || !lastname) {
+	if (!username || !email || !password) {
 		return res.status(400).json({ message: "All fields are required!" });
 	}
 
@@ -50,8 +50,6 @@ export const registerUser = async (req, res) => {
 			username,
 			email,
 			password: hashedPassword,
-			firstname,
-			lastname,
 		});
 
 		const newUser = await user.save();

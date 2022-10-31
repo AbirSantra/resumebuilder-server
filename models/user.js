@@ -15,17 +15,6 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		firstname: {
-			type: String,
-			required: true,
-		},
-		middlename: {
-			type: String,
-		},
-		lastname: {
-			type: String,
-			required: true,
-		},
 	},
 	{
 		timestamps: true,

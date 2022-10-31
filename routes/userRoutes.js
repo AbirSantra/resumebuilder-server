@@ -13,13 +13,13 @@ import { verifyJwt } from "../middleware/verifyJwt.js";
 
 const router = express.Router();
 
+// Register a User
+router.post("/register", registerUser);
+
 router.use(verifyJwt);
 
 // Get a User
 router.get("/:id", getUser);
-
-// Register a User
-router.post("/register", registerUser);
 
 // Update a User
 router.patch("/:id", updateUser);

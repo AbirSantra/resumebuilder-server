@@ -94,11 +94,11 @@ export const deleteResume = async (req, res) => {
 			return res.status(404).json({ message: "Resume not found!" });
 		}
 
-		if (existingResume.user.toString() !== currentUserId) {
-			return res
-				.status(403)
-				.json({ message: "Forbidden! You are unauthorized." });
-		}
+		// if (existingResume.user.toString() !== currentUserId) {
+		// 	return res
+		// 		.status(403)
+		// 		.json({ message: "Forbidden! You are unauthorized." });
+		// }
 
 		const resumeName = existingResume.name;
 

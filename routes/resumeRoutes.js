@@ -8,6 +8,7 @@ import {
 	createResume,
 	updateResume,
 	deleteResume,
+	getUserResumes,
 } from "../controllers/resumeControllers.js";
 import { verifyJwt } from "../middleware/verifyJwt.js";
 
@@ -18,13 +19,16 @@ router.use(verifyJwt);
 // Get a resume
 router.get("/:id", getResume);
 
-// Create a resume
-router.post("/create", createResume);
-
 // Update a resume
 router.put("/:id", updateResume);
 
 // Delete a resume
 router.delete("/:id", deleteResume);
+
+// Get a user's resumes
+router.get("/user/:id", getUserResumes);
+
+// Create a resume
+router.post("/create", createResume);
 
 export default router;

@@ -9,13 +9,29 @@ export const getResume = async (req, res) => {
 	const resumeId = req.params.id;
 
 	try {
-		const resume = await resumeModel.findById(resumeId).populate("user").exec();
+		const resume = await resumeModel.findById(resumeId).exec();
 
 		if (!resume) {
 			return res.status(404).json({ message: "Resume not found!" });
 		}
 
 		res.status(200).json(resume);
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+};
+
+// GET ALL RESUMES OF A USER
+export const getUserResumes = async (req, res) => {
+	const userId = req.params.id;
+
+	try {
+		const userResumes = await resumeModel.find({ user: userId });
+		res.status(200).json(
+			userResumes.sort((a, b) => {
+				return b.createdAt - a.createdAt;
+			})
+		);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}

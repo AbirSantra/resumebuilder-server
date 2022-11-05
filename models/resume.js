@@ -12,25 +12,24 @@ const resumeSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		position: {
-			type: String,
-			required: true,
-		},
 		share: {
 			type: Boolean,
 			required: true,
 			default: true,
 		},
+		template: {
+			type: String,
+			default: "template1",
+		},
 		data: {
 			header: {
 				firstname: { type: String, required: true },
-				middlename: { type: String, required: true },
 				lastname: { type: String, required: true },
 				profession: { type: String, required: true },
 				city: { type: String, required: true },
 				country: { type: String, required: true },
-				pincode: { type: Number, required: true },
-				phone: { type: Number, required: true },
+				pincode: { type: String, required: true },
+				phone: { type: String, required: true },
 				email: { type: String, required: true },
 				linkedin: { type: String, required: true },
 				website: { type: String, required: true },
@@ -39,54 +38,46 @@ const resumeSchema = new mongoose.Schema(
 				{
 					employer: { type: String, required: true },
 					position: { type: String, required: true },
-					location: { type: String, required: true },
 					startdate: {
-						month: { type: String, required: true },
-						year: { type: Number, required: true },
+						type: String,
+						required: true,
 					},
 					enddate: {
-						month: { type: String, required: true },
-						year: { type: Number, required: true },
+						type: String,
+						required: true,
 					},
+					description: { type: String, required: true },
 				},
 			],
 			education: [
 				{
 					institute: { type: String, required: true },
 					degree: { type: String, required: true },
-					field: { type: String, required: true },
 					startdate: {
-						month: { type: String, required: true },
-						year: { type: Number, required: true },
+						type: String,
+						required: true,
 					},
 					enddate: {
-						month: { type: String, required: true },
-						year: { type: Number, required: true },
+						type: String,
+						required: true,
 					},
+					score: { type: String, required: true },
 				},
 			],
 			skills: [String],
 			projects: [
 				{
 					name: { type: String, required: true },
-					tools: [String],
 					url: { type: String, required: true },
 					description: { type: String, required: true },
 					startdate: {
-						month: { type: String, required: true },
-						year: { type: Number, required: true },
+						type: String,
+						required: true,
 					},
 					enddate: {
-						month: { type: String, required: true },
-						year: { type: Number, required: true },
+						type: String,
+						required: true,
 					},
-				},
-			],
-			roles: [
-				{
-					rolename: { type: String, required: true },
-					organization: { type: String, required: true },
-					description: { type: String, required: true },
 				},
 			],
 			certifications: [
@@ -97,7 +88,6 @@ const resumeSchema = new mongoose.Schema(
 					url: { type: String, required: true },
 				},
 			],
-			awards: [String],
 			extra: [
 				{
 					title: { type: String, required: true },

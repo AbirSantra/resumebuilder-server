@@ -14,10 +14,10 @@ import { verifyJwt } from "../middleware/verifyJwt.js";
 
 const router = express.Router();
 
-router.use(verifyJwt);
-
-// Get a resume
+// Get a resume // public link
 router.get("/:id", getResume);
+
+router.use(verifyJwt);
 
 // Update a resume
 router.put("/:id", updateResume);
